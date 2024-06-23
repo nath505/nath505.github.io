@@ -43,6 +43,8 @@ Databases are where we can store information long-term, in contrast to data stor
 
 Finally, best practices in security are needed for protecting data from bad actors. Encrypting data in transit over a network and hashing passwords before storing them are examples of exhibiting a security mindset. In the course of my academic pursuit, I have demonstrated my ability to put the privacy and security needs of users first in order to prevent their data from potentially being compromised.
 
+<a href="#">Back to top</a>
+
 ## Summary of Artifacts
 
 Throughout this capstone course, I have showcased my strengths by creating software solutions in three different categories: software engineering and design, data structures and algorithms, and databases.
@@ -52,6 +54,8 @@ For the first category, I enhanced a project that uses a binary search tree to s
 For the second category, I enhanced a mobile application developed for Android that functions as an inventory tracker. Originally, the user didn’t have the ability to search through the database for specific items, which was fixed by adding a new search feature along with filters to provide more precise and relevant results.
 
 For the third category, I enhanced a project that calculates interest over a specified period of years by creating a full stack application. With this enhancement, I kept the core functionality of the original code and presented it in an entirely new format, which incorporates user accounts and CRUD operations for performing essential database tasks.
+
+<a href="#">Back to top</a>
 
 ## Category One: Software Engineering and Design
 
@@ -69,9 +73,11 @@ Overall, I believe that I’ve met the fourth course outcome with this enhanceme
 
 ### *Reflect on the process of enhancing and modifying the artifact. What did you learn as you were creating it and improving it? What challenges did you face?*
 
-As I was enhancing the artifact, I learned a lot about rewriting a program from one programming language to another. There are subtle differences between Java and C++ that affect how the code should be written and organized. For example, Java doesn’t make use of pointers, instead relying on the “new” keyword to create objects that are allocated to memory automatically. This also makes it possible for garbage collection to work without interference from the programmer. Whereas in C++, programmers can use pointers to directly access parts of memory that they need to work with, manually allocating and freeing memory as needed. A challenge that I faced was getting the course data to load correctly in Java. I had to change the logic in `loadCourses()` to better accommodate the differences in syntax from C++. Also, performing the JUnit tests required some troubleshooting to get it set up correctly and working with my project.
+As I was enhancing the artifact, I learned a lot about rewriting a program from one programming language to another. There are subtle differences between Java and C++ that affect how the code should be written and organized. For example, Java doesn’t make use of pointers, instead relying on the “new” keyword to create objects that are allocated to memory automatically. This also makes it possible for garbage collection to work without interference from the programmer. Whereas in C++, programmers can use pointers to directly access parts of memory that they need to work with, manually allocating and freeing memory as needed. A challenge that I faced was getting the course data to load correctly in Java. I had to change the logic in loading courses from a file to better accommodate the differences in syntax from C++. Also, performing the JUnit tests required some troubleshooting to get it set up correctly and working with my project.
 
 ### [Link to artifacts for Software Engineering and Design](https://github.com/nath505/nath505.github.io/tree/main/Software%20Engineering%20and%20Design)
+
+<a href="#">Back to top</a>
 
 ## Category Two: Data Structures and Algorithms
 
@@ -81,7 +87,82 @@ The artifact I’ve used in this enhancement is my final project from CS-360: Mo
 
 ### *Justify the inclusion of the artifact in your ePortfolio. Why did you select this item? What specific components of the artifact showcase your skills and abilities in algorithms and data structure? How was the artifact improved?*
 
-I selected this artifact because it showcases my ability to create apps, which is an important skill to have in an age where many people own smartphones that they use in their daily lives. My app uses a variety of algorithms to perform tasks, such as displaying the items on the main screen and sending SMS messages when an item’s stock is low. For this enhancement, I implemented search functionality into the app, which can be used by tapping on the search bar on the main screen. As the user types into the search bar, their query is sent to the database and displays relevant results in real-time. In addition, I wrote a new function `applyFilters()` in which the search results are sorted based on the criteria that the user has selected. I also added the ability to log out of the app as well as delete the user’s account from the database. Lastly, I performed other tasks such as cleaning up the app’s design and changing the app icon so that it isn’t the default one.
+I selected this artifact because it showcases my ability to create apps, which is an important skill to have in an age where many people own smartphones that they use in their daily lives. My app uses a variety of algorithms to perform tasks, such as displaying the items on the main screen and sending SMS messages when an item’s stock is low. For this enhancement, I implemented search functionality into the app, which can be used by tapping on the search bar on the main screen. As the user types into the search bar, their query is sent to the database and displays relevant results in real-time. In addition, I wrote a new function `applyFilters()` in which the search results are sorted based on the criteria that the user has selected:
+
+```
+public List<String> applyFilters(List<String> itemList) {
+  // use filters to set sort type, order and range values
+  String sortType = mFilterList.get(0);
+  String sortOrder = mFilterList.get(1);
+  String minValue = mFilterList.get(2);
+  String maxValue = mFilterList.get(3);
+
+  int size = itemList.size();
+
+  // declare lists for sorting
+  List<List<String>> sortedList = new ArrayList<>();
+  List<String> temp;
+
+  // divide list to be sorted into names and counts
+  int entry = -1;
+
+  for (int i = 0; i < size - 1; i+=2) {
+    temp = new ArrayList<>();
+
+    temp.add(itemList.get(++entry));
+    temp.add(itemList.get(++entry));
+
+    sortedList.add(temp);
+  }
+
+  /* perform any necessary sorting before displaying results */
+
+  // sort by item name
+  if (sortType.equals("Alphabetical")) {
+      if (sortOrder.equals("Ascending")) {
+          sortedList.sort(Comparator.comparing(x -> x.get(0)));
+      }
+      else if (sortOrder.equals("Descending")) {
+          sortedList.sort(Comparator.comparing(x -> x.get(0), Collections.reverseOrder()));
+      }
+  // sort by item quantity
+  } else if (sortType.equals("Quantity")) {
+      if (sortOrder.equals("Ascending")) {
+          sortedList.sort(Comparator.comparing(x -> Integer.parseInt(x.get(1))));
+      }
+      else if (sortOrder.equals("Descending")) {
+          sortedList.sort(Comparator.comparing(x -> Integer.parseInt(x.get(1)), Collections.reverseOrder()));
+      }
+  }
+  // get range values for sorting, if any
+  if (!minValue.equals("")) {
+      sortedList.removeIf(list -> Integer.parseInt(list.get(1)) < Integer.parseInt(minValue));
+      size -= (size - (sortedList.size() * 2));
+  }
+  if (!maxValue.equals("")) {
+      sortedList.removeIf(list -> Integer.parseInt(list.get(1)) > Integer.parseInt(maxValue));
+      size -= (size - (sortedList.size() * 2));
+  }
+
+  // clear the original list for newly sorted values
+  itemList.clear();
+  // reset counter
+  entry = 0;
+
+  // rebuild the list with sorted values
+  for (int i = 0; i < size - 1; i+=2) {
+      itemList.add(sortedList.get(entry).get(0));
+      itemList.add(sortedList.get(entry).get(1));
+
+      ++entry;
+  }
+
+  // return the sorted list to display in scrollview
+  return itemList;
+}
+```
+
+I also added the ability to log out of the app as well as delete the user’s account from the database. Lastly, I performed other tasks such as cleaning up the app’s design and changing the app icon so that it isn’t the default one.
 
 ### *Did you meet the course objectives you planned to meet with this enhancement in Module One? Do you have any updates to your outcome-coverage plans?*
 
@@ -92,6 +173,8 @@ I believe I’ve met the third course objective with this enhancement by incorpo
 Throughout this process, I learned about how developers implement search functionality into their apps. This is useful since searching through a big list of items is preferable over scrolling through it manually to find something. However, getting the filters to work correctly for the search results was a difficult task. I had to work through my algorithm and debug it many times until it functioned as intended. This process was a valuable learning experience for me and forced me to closely study my code to figure out what was going wrong. Not only that, but I learned a lot more about mobile app development in general, which is a useful skillset to have in today’s market. Overall, this enhancement has shown me that, by thinking logically through the code while using effective debugging tools, such as breakpoints, it’s possible to overcome any coding challenge if you put your mind to it.
 
 ### [Link to artifacts for Data Structures and Algorithms](https://github.com/nath505/nath505.github.io/tree/main/Data%20Structures%20and%20Algorithms)
+
+<a href="#">Back to top</a>
 
 ## Category Three: Databases
 
@@ -112,6 +195,11 @@ I’ve made significant progress in the course objective that I planned to meet 
 While enhancing this artifact, I had a lot to learn about React and full stack development in general. Although I have taken a full stack course before, it was mostly guided and didn’t allow for much experimentation of the code. This enhancement has been beneficial for my own personal development using self-taught strategies to expand my knowledge and skills in developing software. Honestly, it was a difficult process with many challenges, but eventually I overcame them to create a fully functioning program that showcases my ability to work with databases. Some of these challenges were related to implementing the various concepts of full stack development. For example, getting everything on the back-end to route correctly, as well as figuring out how to manage cookies and user sessions, had tested my existing skills but also helped to improve them. Thankfully, there are well-known libraries that help with these common tasks, such as jsonwebtoken for generating tokens to authenticate users, as well as bcrypt for creating highly secure hashes of passwords.
 
 ### [Link to artifacts for Databases](https://github.com/nath505/nath505.github.io/tree/main/Databases)
+
+<a href="#">Back to top</a>
+
 ## Code Review Video
 
-<iframe width="640" height="360" src="http://www.youtube.com/embed/5yCsOxYrAlc" frameborder="0" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/5yCsOxYrAlc" frameborder="0" allowfullscreen></iframe>
+
+<a href="#">Back to top</a>
