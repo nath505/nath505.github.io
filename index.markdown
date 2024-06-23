@@ -200,6 +200,6 @@ While enhancing this artifact, I had a lot to learn about React and full stack d
 
 ## Code Review Video
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/5yCsOxYrAlc" frameborder="0" allowfullscreen></iframe>
+### [Link to the video](https://youtu.be/5yCsOxYrAlc)
 
 <a href="#">Back to top</a>
