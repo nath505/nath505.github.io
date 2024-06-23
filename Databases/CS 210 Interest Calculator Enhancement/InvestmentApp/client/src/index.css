@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: lightgray;
+    background-color: darkslategray;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: inherit;
+}
+
+.Greeting h1 {
+    color: lightblue;
+}
+
+.Greeting h2 {
+    padding-bottom: 2em;
+}
+
+.Login, .Register {
+    text-align: center;
+    margin-top: 10em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+}
+
+.AddInvestment, .UpdateInvestment {
+    text-align: center;
+    margin-top: 10em;
+    padding: 1em;
+    width: 25em;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: slategray;
+    overflow: auto;
+}
+
+.AddInvestment input,
+.AddInvestment button,
+.UpdateInvestment input,
+.UpdateInvestment button {
+    float: right;
+}
+
+.TopBar {
+    padding: 1em;
+    background-color: gray;
+    overflow: auto;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.TopBar h1 {
+    float: left;
+}
+
+.TopBar h2 {
+    float: right;
+}
+
+.TopBar p {
+    clear: both;
+}
+
+.MainMenu, .AddMenu, .UpdateMenu {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.MainMenu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background-color: dimgray;
+}
+
+.MainMenu li {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-top-width: 0;
+    padding: 1em;
+}
+
+.MainMenu li p {
+    font-weight: bold;
+    padding-left: 1em;
+}
+
+.MainMenu li:hover {
+    background-color: slategray;
+}
+
+a:link {
+    color: lightgray;
+}
+
+a:visited {
+    color: lightgray;
+}

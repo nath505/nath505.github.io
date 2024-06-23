@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Inventory Tracker</string>
+    <string name="app_logo">Inventory Tracker</string>
+    <string name="greeting"><b>Welcome to Inventory Tracker!\nPlease log in or sign up</b></string>
+    <string name="user_warning1">Please enter a username and password</string>
+    <string name="user_warning2">Username or password is incorrect</string>
+    <string name="user_warning3">Username already exists</string>
+    <string name="user_added_text">User added successfully</string>
+    <string name="user_hint">Username…</string>
+    <string name="pass_hint">Password…</string>
+    <string name="login_text">Log in</string>
+    <string name="signup_text">Sign up</string>
+
+    <string name="logout_text">Log out</string>
+    <string name="item_text">Item</string>
+    <string name="count_text">Count</string>
+    <string name="action_text">Action</string>
+    <string name="delete_all_text">Delete all</string>
+    <string name="sync_text">Sync</string>
+    <string name="list_item_text">Example item #1</string>
+    <string name="item_count_text">5</string>
+    <string name="add_item_text">Add new item</string>
+    <string name="settings_text">Settings</string>
+    <string name="delete_desc">Delete this item</string>
+    <string name="edit_desc">Edit this item</string>
+    <string name="empty_list_text">Nothing here yet… try adding an item or syncing the database</string>
+    <string name="scroll_desc">Scrolling list of items</string>
+    <string name="search">Search</string>
+    <string name="filter_text">Filter</string>
+
+    <string name="add_greeting">Enter item information:</string>
+    <string name="item_name_hint">Item name</string>
+    <string name="item_quant_hint">Item quantity</string>
+    <string name="confirm_add_button">Confirm</string>
+    <string name="go_back_button">Go Back</string>
+
+    <string name="add_text">Add</string>
+    <string name="remove_text">Remove</string>
+    <string name="edit_greeting">Currently in stock:</string>
+    <string name="amount_hint">Enter amount…</string>
+    <string name="item_name_text">Item name</string>
+
+    <string name="phone_greeting">Your phone number is needed to send SMS alerts</string>
+    <string name="phone_warning">Enter 10-digit phone number…</string>
+    <string name="confirm_phone_button">Confirm</string>
+
+    <string name="permission_title">Send SMS messages</string>
+    <string name="send_sms_rationale">Enable SMS messages to notify you if your inventory is low</string>
+    <string name="ok_button">OK</string>
+
+    <string name="sms_text">Enable SMS</string>
+    <string name="delete_account_text">Delete account</string>
+
+    <string name="sort_type_text">Sort type:</string>
+    <string name="sort_order_text">Sort order:</string>
+    <string name="item_quant_text">Item quantity:</string>
+    <string name="min_edit_text">Min value</string>
+    <string name="max_edit_text">Max value</string>
+    <string name="save_filter_button">Save</string>
+    <string name="reset_filter_button">Reset</string>
+
+    <string-array name="sortTypeArray">
+        <item>None</item>
+        <item>Alphabetical</item>
+        <item>Quantity</item>
+    </string-array>
+
+    <string-array name="sortOrderArray">
+        <item>None</item>
+        <item>Ascending</item>
+        <item>Descending</item>
+    </string-array>
+</resources>
